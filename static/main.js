@@ -1,4 +1,4 @@
-import { Utils } from './services/utils'
+const url = process.env.DEV_MODE === 'true' ? 'http://localhost:5000' : 'https://duckcards.vercel.app:5000'
 
 const app = new Vue({
     el: '#app',
@@ -29,7 +29,7 @@ const app = new Vue({
         },
     },
     created() {
-        this.socket = io(Utils.getProductionUrl())
+        this.socket = io(url)
         this.socket.on('msgToClient', message => {
             this.receivedMessage(message)
         })
