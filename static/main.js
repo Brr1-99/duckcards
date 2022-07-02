@@ -1,3 +1,5 @@
+import { Utils } from './services/utils'
+
 const app = new Vue({
     el: '#app',
     data: {
@@ -14,6 +16,7 @@ const app = new Vue({
                     name: this.name,
                     text: this.text,
                 }
+
                 this.socket.emit('msgToServer', message)
                 this.text = ''
             }
@@ -26,7 +29,7 @@ const app = new Vue({
         },
     },
     created() {
-        this.socket = io('http://localhost:5000')
+        this.socket = io(Utils.getProductionUrl())
         this.socket.on('msgToClient', message => {
             this.receivedMessage(message)
         })
