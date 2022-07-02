@@ -1,5 +1,3 @@
-const url = process.env.DEV_MODE === 'true' ? 'http://localhost:5000' : 'https://duckcards.vercel.app:5000'
-
 const app = new Vue({
     el: '#app',
     data: {
@@ -29,7 +27,7 @@ const app = new Vue({
         },
     },
     created() {
-        this.socket = io(url)
+        this.socket = io('https://duckcards.vercel.app:5000')
         this.socket.on('msgToClient', message => {
             this.receivedMessage(message)
         })
