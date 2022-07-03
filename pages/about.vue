@@ -3,11 +3,9 @@
     <button @click="$router.push('/')">Go to home</button>
 </template>
 
-
-
 <script>
 // This will also work in `<script setup>`
 definePageMeta({
-    layout: "custom",
+    layout: 'custom',
 })
 </script>

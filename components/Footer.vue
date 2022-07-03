@@ -1,5 +1,3 @@
 <template>
-    <footer>
-        Dawichi © {{ new Date().getFullYear() }}
-    </footer>
+    <footer>Dawichi © {{ new Date().getFullYear() }}</footer>
 </template>
