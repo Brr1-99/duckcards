@@ -8,14 +8,9 @@
 
 <script>
 export default {
-    data() {
-        return {
-            title: 'DuckCards - Online Card Games',
-        }
-    },
     head() {
         return {
-            title: this.title,
+            title: 'DuckCards - Online Card Games',
             meta: [
                 {
                     hid: 'DuckCards',
