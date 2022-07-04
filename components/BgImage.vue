@@ -5,7 +5,7 @@
 <script>
 /**
  * BgImage.vue
- * BgImage component using background-image instead of <img/>
+ * @description Display an image using background-image instead of <img/>
  */
 export default {
     name: 'BgImage',
