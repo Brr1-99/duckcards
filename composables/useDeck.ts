@@ -11,12 +11,34 @@ export default () => {
      */
     function generateMadnessDeck() {
         const numbers: number[] = [6, 7, 8, 9, 10, 11, 12]
+        const temp = []
 
         for (const number of numbers) {
             for (let i = 0; i < number; i++) {
-                deck.value.push(number)
+                temp.push(number)
             }
         }
+
+        deck.value = temp
+    }
+
+    /**
+     * Generate a new deck of cards for Madness game.
+     */
+    function generateParadeDeck() {
+        const numbers: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        const temp = []
+
+        for (const number of numbers) {
+            for (let i = 0; i < 6; i++) {
+                temp.push({
+                    value: number,
+                    type: i,
+                })
+            }
+        }
+
+        deck.value = temp
     }
 
     /**
@@ -44,6 +66,7 @@ export default () => {
         deck: readonly(deck),
         hand: readonly(hand),
         generateMadnessDeck,
+        generateParadeDeck,
         shuffleDeck,
         dealCards,
     }

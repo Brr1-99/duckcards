@@ -44,10 +44,10 @@ export default {
                     link: '/madness',
                 },
                 {
-                    name: 'Madness',
-                    description: 'Navigate through a maze of rooms to find the exit.',
-                    image: '/images/dark.jpg',
-                    link: '/portal',
+                    name: 'Parade',
+                    description: 'Parade the correct number to keep with the lowest score.',
+                    image: '/images/parade.jpg',
+                    link: '/parade',
                 },
                 {
                     name: 'Portal',
