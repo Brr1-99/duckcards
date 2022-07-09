@@ -1,4 +1,11 @@
-const deck = ref([])
+import { Ref } from 'nuxt/dist/app/compat/capi'
+
+type Card = {
+    value: number
+    type: number
+}
+
+const deck: Ref<Card[]> = ref([])
 const hand = ref([])
 
 /**
@@ -15,7 +22,10 @@ export default () => {
 
         for (const number of numbers) {
             for (let i = 0; i < number; i++) {
-                temp.push(number)
+                temp.push({
+                    value: number,
+                    type: null, // unused in this game
+                })
             }
         }
 

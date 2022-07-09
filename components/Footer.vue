@@ -1,3 +1,7 @@
 <template>
-    <footer @click="$router.push('/')">Dawichi © {{ new Date().getFullYear() }}</footer>
+    <footer>
+        <NuxtLink to="/">
+            <span>Dawichi © {{ new Date().getFullYear() }}</span>
+        </NuxtLink>
+    </footer>
 </template>
