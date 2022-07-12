@@ -1,16 +1,18 @@
 <template>
-    <h2>My cards</h2>
-    <section class="container flex flex-wrap py-5">
-        <div v-for="card in deck" :key="card.value + card.type">
-            <div :class="'border p-2 ' + colorCard(card.type)">
-                {{ card.value }}
+    <div>
+        <h2>My cards</h2>
+        <section class="container flex flex-wrap py-5">
+            <div v-for="card in deck" :key="card.value + card.type">
+                <div :class="'border p-2 ' + colorCard(card.type)">
+                    {{ card.value }}
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <Button1 text="Shuffle deck" @click="shuffleDeck" />
-    <h3>Your cards on hand: {{ hand }}</h3>
-    <Button1 text="Deal cards" @click="dealCards" />
+        <Button1 text="Shuffle deck" @click="shuffleDeck" />
+        <h3>Your cards on hand: {{ hand }}</h3>
+        <Button1 text="Deal cards" @click="dealCards" />
+    </div>
 </template>
 
 <script setup lang="ts">
