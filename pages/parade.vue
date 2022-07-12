@@ -1,17 +1,26 @@
 <template>
     <div>
-        <h2>My cards</h2>
+        <Button1 text="Reset" type="danger" @click="init" />
+        <p class="mt-10"></p>
+        <h3>Deck:</h3>
         <section class="container flex flex-wrap py-5">
-            <div v-for="card in deck" :key="card.value + card.type">
+            <div v-for="(card, idx) in deck" :key="idx">
                 <div :class="'border p-2 ' + colorCard(card.type)">
                     {{ card.value }}
                 </div>
             </div>
         </section>
-
         <Button1 text="Shuffle deck" @click="shuffle" />
-        <h3>Your cards on hand: {{ hand }}</h3>
-        <Button1 text="Deal cards" @click="deal" />
+
+        <h3>Your cards on hand:</h3>
+        <section class="container flex flex-wrap py-5">
+            <div v-for="(card, idx) in hand" :key="idx">
+                <div :class="'border p-2 ' + colorCard(card.type)">
+                    {{ card.value }}
+                </div>
+            </div>
+        </section>
+        <Button1 text="Deal cards" type="info" @click="deal" />
     </div>
 </template>
 

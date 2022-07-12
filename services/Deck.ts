@@ -5,42 +5,32 @@ type Card = {
     type: number
 }
 
+/**
+ * Logic utils to manipulate decks (arrays of cards)
+ */
 export class Deck {
-    cards: Ref<Card[]>
-
-    constructor() {
-        this.cards = ref([])
-        this.shuffle()
-    }
-
     /**
-     * Shuffle the deck.
+     * Shuffles an array.
+     * @param array Array to shuffle.
+     * @returns Shuffled array.
      */
-    shuffle(): void {
-        for (let i = this.cards.value.length - 1; i > 0; i--) {
+    static shuffle(array: Card[]): void {
+        for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1))
-            const temp = this.cards.value[i]
-            this.cards.value[i] = this.cards.value[j]
-            this.cards.value[j] = temp
+            const temp = array[i]
+            array[i] = array[j]
+            array[j] = temp
         }
     }
 
     /**
-     * Draw a card from the deck.
+     * Deal n cards from a deck to a hand.
      */
-    draw(): Card {
-        return this.cards.value.pop()
-    }
-
-    /**
-     * Pops N cards from the deck.
-     * @param n Number of cards to pop.
-     */
-    dealCards(n): Card[] {
+    static deal(n: number, deck: Ref<Card[]>, hand: Ref<Card[]>): void {
         const popped = []
         for (let i = 0; i < n; i++) {
-            popped.push(this.draw())
+            popped.push(deck.value.pop())
         }
-        return popped
+        hand.value = [...hand.value, ...popped]
     }
 }
