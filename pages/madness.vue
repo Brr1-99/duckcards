@@ -16,15 +16,15 @@
 
         <p class="mt-10"></p>
         <h3>Deck: {{ deck }}</h3>
-        <Button1 text="Shuffle deck" @click="shuffleDeck" />
+        <Button1 text="Shuffle deck" @click="shuffle" />
         <h3>Your cards on hand: {{ hand }}</h3>
-        <Button1 text="Deal cards" @click="dealCards" />
+        <Button1 text="Deal cards" @click="deal" />
     </div>
 </template>
 
 <script setup lang="ts">
 const { count, increment, obj, lostLife, addScore, addLevel } = useCounter()
-const { deck, hand, generateMadnessDeck, shuffleDeck, dealCards } = useDeck()
+const { deck, hand, init, shuffle, deal } = useMadness()
 
-generateMadnessDeck()
+init()
 </script>
