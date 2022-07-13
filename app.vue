@@ -15,7 +15,13 @@ export default {
                 {
                     hid: 'DuckCards',
                     name: 'Online Card Games',
-                    content: 'DuckCards is where you can play online card games',
+                    content: 'Play different card games online!',
+                },
+            ],
+            link: [
+                {
+                    rel: 'stylesheet',
+                    href: 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css',
                 },
             ],
         }

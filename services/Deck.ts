@@ -1,8 +1,9 @@
 import { Ref } from 'nuxt/dist/app/compat/capi'
 
-type Card = {
+export type Card = {
     value: number
     type: number
+    hide: boolean
 }
 
 /**

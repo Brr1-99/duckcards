@@ -1,12 +1,13 @@
 <template>
     <div>
-        <Button1 text="Reset" type="danger" @click="init" />
+        <Button1 text="Setup" type="danger" @click="setup" />
+        <Button1 text="Start" type="success" @click="start" />
         <p class="mt-10"></p>
         <h3>Deck:</h3>
         <section class="container flex flex-wrap py-5">
             <div v-for="(card, idx) in deck" :key="idx">
                 <div :class="'border p-2 ' + colorCard(card)">
-                    {{ card }}
+                    {{ card.hide ? 'x' : card.value }}
                 </div>
             </div>
         </section>
@@ -16,7 +17,7 @@
         <section class="container flex flex-wrap py-5">
             <div v-for="(card, idx) in hand" :key="idx">
                 <div :class="'border p-2 ' + colorCard(card)">
-                    {{ card }}
+                    {{ card.hide ? 'x' : card.value }}
                 </div>
             </div>
         </section>
@@ -25,16 +26,18 @@
 </template>
 
 <script setup lang="ts">
-const { deck, hand, init, shuffle, deal } = useMadness()
+const { deck, hand, setup, start, shuffle, deal } = useMadness()
 
-function colorCard(value: number) {
-    if (value === 6) return 'bg-red-600'
-    if (value === 7) return 'bg-orange-600'
-    if (value === 8) return 'bg-yellow-600'
-    if (value === 9) return 'bg-green-600'
-    if (value === 10) return 'bg-blue-600'
-    if (value === 11) return 'bg-violet-600'
-    if (value === 12) return 'bg-zinc-600'
+function colorCard(card) {
+    if (card.hide) return 'bg-zinc-900'
+    if (card.value === 6) return 'bg-green-600'
+    if (card.value === 7) return 'bg-blue-600'
+    if (card.value === 8) return 'bg-zinc-600'
+    if (card.value === 9) return 'bg-orange-600'
+    if (card.value === 10) return 'bg-yellow-600'
+    if (card.value === 11) return 'bg-indigo-600'
+    if (card.value === 12) return 'bg-red-600'
 }
-init()
+
+setup()
 </script>
