@@ -11,7 +11,7 @@ _Live Example: https://nuxtjs-template.vercel.app_
 Install the dependencies:
 
 ```bash
-yarn install
+pnpm install --shamefully-hoist
 ```
 
 ## Development

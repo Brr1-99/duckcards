@@ -12,20 +12,43 @@
         </section>
         <Button1 text="Shuffle deck" @click="shuffle" />
 
-        <h3>Your cards on hand:</h3>
+        <p class="mt-10"></p>
+        <h3>Table:</h3>
         <section class="container flex flex-wrap py-5">
-            <div v-for="(card, idx) in hand" :key="idx">
+            <div v-for="(card, idx) in table" :key="idx">
                 <div :class="'border p-2 ' + colorCard(card.type)">
                     {{ card.value }}
                 </div>
             </div>
         </section>
-        <Button1 text="Deal cards" type="info" @click="deal" />
+        <Button1 text="Deal table" @click="deal_table" />
+
+        <h3>Your cards on hand</h3>
+        <section class="container flex flex-wrap py-5">
+            <div v-for="(card, idx) in hand" :key="idx">
+                <button @click="check_card(card, idx)">
+                    <div :class="'border p-2 ' + colorCard(card.type)">
+                        {{ card.value }}
+                    </div>
+                </button>
+            </div>
+        </section>
+        <Button1 text="Deal cards" type="info" @click="deal_hand" />
+        <h3>Your obtained points</h3>
+        <section class="container flex flex-wrap py-5">
+            <div v-for="(card, idx) in cards" :key="idx">
+                <button>
+                    <div :class="'border p-2 ' + colorCard(card.type)">
+                        {{ card.value }}
+                    </div>
+                </button>
+            </div>
+        </section>
     </div>
 </template>
 
 <script setup lang="ts">
-const { deck, hand, shuffle, deal, init } = useParade()
+const { deck, hand, table, cards, shuffle, deal_hand, deal_table, init, check_card } = useParade()
 init()
 
 function colorCard(type: number) {

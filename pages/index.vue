@@ -10,7 +10,7 @@
                 class="bg-zinc-800 border-2 border-yellow-300 p-4 cursor-pointer hover:bg-yellow-300 hover:text-black"
             >
                 <NuxtLink :to="game.link">
-                    <section class="grid grid-cols-2 gap-4" @click="$router.push(game.link)">
+                    <section class="grid grid-cols-2 gap-4">
                         <div class="h-full">
                             <BgImage :image="game.image" />
                         </div>
