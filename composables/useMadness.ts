@@ -1,11 +1,13 @@
 import { Deck } from '~~/services/Deck'
 
-// Deck of pending cards
+// Deck of cards
 const deck = ref([])
 // In hand cards
-const hand = ref([])
+const you_hand = ref([])
+const cpu_hand = ref([])
 // In table cards
-const table = ref([])
+const you_table = ref([])
+const cpu_table = ref([])
 
 /**
  * useMadness.ts
@@ -17,7 +19,10 @@ export default () => {
      */
     function setup() {
         deck.value = []
-        hand.value = []
+        you_hand.value = []
+        you_table.value = []
+        cpu_hand.value = []
+        cpu_table.value = []
 
         const numbers: number[] = [6, 7, 8, 9, 10, 11, 12]
         const temp = []
@@ -44,14 +49,20 @@ export default () => {
             deck.value[i].hide = false
         }
         Deck.shuffle(deck.value)
+        // Deal 5 cards to each player
+        Deck.deal(5, deck, you_hand)
+        you_hand.value.sort((a, b) => a.value - b.value)
+        Deck.deal(5, deck, cpu_hand)
+        cpu_hand.value.sort((a, b) => a.value - b.value)
     }
 
     return {
         deck: readonly(deck),
-        hand: readonly(hand),
-        table: readonly(table),
+        player_hand: readonly(you_hand),
+        player_table: readonly(you_table),
+        cpu_hand: readonly(cpu_hand),
+        cpu_table: readonly(cpu_table),
         setup,
         start,
-        deal: () => Deck.deal(5, deck, hand),
     }
 }
