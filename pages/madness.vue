@@ -1,20 +1,27 @@
 <template>
-    <div>
-        <Button1 text="Setup" type="danger" @click="setup" />
-        <Button1 text="Start" type="success" @click="start" />
-        <p class="mt-10"></p>
+    <div class="w-full grid grid-rows-2 gap-4">
+        <!-- row 1 -->
+        <section class="bg-zinc-800 p-4">
+            <Button1 text="Setup" type="danger" @click="setup" />
+            <Button1 text="Start" type="success" @click="start" />
 
-        <h3>Deck:</h3>
-        <List :deck="deck" />
-        <Button1 text="Shuffle deck" @click="shuffle" />
-
-        <h3>Your cards on hand:</h3>
-        <List :deck="hand" :on-hand="true" />
-        <Button1 text="Deal cards" type="info" @click="deal" />
+            <List :deck="deck" />
+        </section>
+        <!-- row 2 -->
+        <section class="grid grid-cols-2 gap-4">
+            <div class="bg-zinc-800 p-4">
+                <h3>Hand:</h3>
+                <List :deck="hand" :on-hand="true" />
+            </div>
+            <div class="bg-zinc-800 p-4">
+                <h3>Table:</h3>
+                <List :deck="table" :on-hand="true" />
+            </div>
+        </section>
     </div>
 </template>
 
 <script setup lang="ts">
-const { deck, hand, setup, start, shuffle, deal } = useMadness()
+const { deck, hand, table, setup, start } = useMadness()
 setup()
 </script>

@@ -4,7 +4,7 @@
             <slot />
         </main>
 
-        <div class="bg-zinc-800 absolute bottom-0 left-0 right-0 text-center p-4">
+        <div class="bg-zinc-800 absolute bottom-0 left-0 right-0 text-center">
             <Footer />
         </div>
     </div>

@@ -1,7 +1,11 @@
 import { Deck } from '~~/services/Deck'
 
+// Deck of pending cards
 const deck = ref([])
+// In hand cards
 const hand = ref([])
+// In table cards
+const table = ref([])
 
 /**
  * useMadness.ts
@@ -39,14 +43,15 @@ export default () => {
         for (let i = 0; i < deck.value.length - 17; i++) {
             deck.value[i].hide = false
         }
+        Deck.shuffle(deck.value)
     }
 
     return {
         deck: readonly(deck),
         hand: readonly(hand),
+        table: readonly(table),
         setup,
         start,
-        shuffle: () => Deck.shuffle(deck.value),
         deal: () => Deck.deal(5, deck, hand),
     }
 }
