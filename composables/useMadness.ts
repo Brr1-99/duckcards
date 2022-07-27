@@ -1,13 +1,22 @@
-import { Deck } from '~~/services/Deck'
+import { Card, Deck } from '~~/services/Deck'
 
-// Deck of cards
-const deck = ref([])
-// In hand cards
-const you_hand = ref([])
-const cpu_hand = ref([])
-// In table cards
-const you_table = ref([])
-const cpu_table = ref([])
+// Game data
+const game = ref({
+    data: {
+        deck: [] as Card[],
+        playing: false,
+        playerTurn: true,
+    },
+    player: {
+        hand: [] as Card[],
+        table: [] as Card[],
+    },
+    cpu: {
+        hand: [] as Card[],
+        table: [] as Card[],
+    },
+})
+const { data, player, cpu } = game.value // shortcuts
 
 /**
  * useMadness.ts
@@ -18,11 +27,11 @@ export default () => {
      * Generate deck of cards.
      */
     function setup() {
-        deck.value = []
-        you_hand.value = []
-        you_table.value = []
-        cpu_hand.value = []
-        cpu_table.value = []
+        data.deck = []
+        player.hand = []
+        player.table = []
+        cpu.hand = []
+        cpu.table = []
 
         const numbers: number[] = [6, 7, 8, 9, 10, 11, 12]
         const temp = []
@@ -37,32 +46,81 @@ export default () => {
             }
         }
 
-        deck.value = temp
+        data.deck = temp
+        data.playing = false
+    }
+
+    /**
+     * Sort hands by value.
+     */
+    function sortHands() {
+        const byValue = (a, b) => a.value - b.value
+        player.hand.sort(byValue)
+        cpu.hand.sort(byValue)
     }
 
     function start() {
-        Deck.shuffle(deck.value)
-        for (const card of deck.value) {
+        Deck.shuffle(data.deck)
+        for (const card of data.deck) {
             card.hide = true
         }
-        for (let i = 0; i < deck.value.length - 17; i++) {
-            deck.value[i].hide = false
+        for (let i = 0; i < data.deck.length - 17; i++) {
+            data.deck[i].hide = false
         }
-        Deck.shuffle(deck.value)
+        Deck.shuffle(data.deck)
+
         // Deal 5 cards to each player
-        Deck.deal(5, deck, you_hand)
-        you_hand.value.sort((a, b) => a.value - b.value)
-        Deck.deal(5, deck, cpu_hand)
-        cpu_hand.value.sort((a, b) => a.value - b.value)
+        for (let i = 0; i < 5; i++) {
+            player.hand.push(data.deck.pop())
+            cpu.hand.push(data.deck.pop())
+        }
+
+        sortHands()
+        data.playing = true
+    }
+
+    /**
+     * Check if you can group 3 or more cards
+     * @param hand Player or CPU hand
+     */
+    function checkGroups(hand) {
+        const idx = {}
+        for (const card of hand) {
+            if (!idx[card.value]) idx[card.value] = 1
+            else idx[card.value] += 1
+        }
+        for (const key in idx) {
+            if (idx[key] >= 3) return true
+        }
+        return false
+    }
+
+    /**
+     * Check if you had the right numbers to create a staircase
+     * @param hand Player or CPU hand
+     * @returns true if you can create a staircase
+     */
+    function checkStaircase(hand) {
+        const numbers = [6, 7, 8, 9, 10, 11, 12]
+        let correct = true
+
+        for (const num of numbers) {
+            if (!hand.find(x => x.value === num)) correct = false
+        }
+        return correct
     }
 
     return {
-        deck: readonly(deck),
-        player_hand: readonly(you_hand),
-        player_table: readonly(you_table),
-        cpu_hand: readonly(cpu_hand),
-        cpu_table: readonly(cpu_table),
+        game: readonly(game),
         setup,
         start,
+        checkGroups,
+        checkStaircase,
+        getCards: () => {
+            for (let i = 0; i < 3; i++) {
+                player.hand.push(data.deck.shift())
+            }
+            sortHands()
+        },
     }
 }

@@ -31,7 +31,7 @@ export default {
             colorCard(card: Card): string {
                 if (card.value === 6) return 'bg-green-600 border-green-800'
                 if (card.value === 7) return 'bg-blue-600 border-blue-800'
-                if (card.value === 8) return 'bg-zinc-600 border-zinc-800'
+                if (card.value === 8) return 'bg-zinc-600 border-zinc-700'
                 if (card.value === 9) return 'bg-orange-600 border-orange-800'
                 if (card.value === 10) return 'bg-yellow-600 border-yellow-800'
                 if (card.value === 11) return 'bg-indigo-600 border-indigo-800'

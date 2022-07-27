@@ -1,5 +1,8 @@
 <template>
-    <button :class="btnColor(type) + ' text-white font-bold py-2 px-4 border-b-4 border-l-2 rounded'">
+    <button
+        :disabled="disabled"
+        :class="btnColor(type) + ' ' + disabledClass(disabled) + ' text-white font-bold py-2 px-4 border-b-4 border-l-2 rounded'"
+    >
         {{ text }}
     </button>
 </template>
@@ -29,11 +32,18 @@ export default {
             type: String as import('vue').PropType<keyof typeof types>,
             default: 'info',
         },
+        disabled: {
+            type: Boolean,
+            default: false,
+        },
     },
     data() {
         return {
             btnColor(type: string): string {
                 return types[type] ?? types.info
+            },
+            disabledClass(disabled: boolean): string {
+                return disabled ? 'cursor-not-allowed opacity-20' : ''
             },
         }
     },
