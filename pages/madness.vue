@@ -6,6 +6,7 @@
             <Button1 text="Start" type="success" :disabled="game.data.playing" @click="start" />
 
             <List :deck="game.data.deck" />
+            <h2>TURN: {{ game.data.playerTurn ? 'player' : 'cpu' }}</h2>
         </section>
         <!-- row2: players -->
         <section class="grid grid-cols-2 gap-4">
@@ -16,9 +17,9 @@
                 <ActionPanel
                     :get-cards="getCards"
                     :disable-all="!game.data.playing && game.data.playerTurn"
-                    :disable-getcards="false"
-                    :disable-groups="!checkGroups(game.player.hand)"
-                    :disable-stairs="!checkStaircase(game.player.hand)"
+                    :disable-getcards="!game.data.playerTurn"
+                    :disable-groups="!check.groups(game.player.hand)"
+                    :disable-stairs="!check.staircase(game.player.hand)"
                 />
             </div>
             <!-- col2: CPU -->
@@ -32,6 +33,6 @@
 </template>
 
 <script setup lang="ts">
-const { game, setup, start, checkGroups, checkStaircase, getCards } = useMadness()
+const { game, setup, start, check, getCards } = useMadness()
 setup()
 </script>

@@ -27,6 +27,8 @@ export default () => {
      * Generate deck of cards.
      */
     function setup() {
+        data.playing = false
+        data.playerTurn = true
         data.deck = []
         player.hand = []
         player.table = []
@@ -59,6 +61,10 @@ export default () => {
         cpu.hand.sort(byValue)
     }
 
+    /**
+     * Start the game.
+     * Shuffle cards, deal hands, ...
+     */
     function start() {
         Deck.shuffle(data.deck)
         for (const card of data.deck) {
@@ -79,48 +85,43 @@ export default () => {
         data.playing = true
     }
 
-    /**
-     * Check if you can group 3 or more cards
-     * @param hand Player or CPU hand
-     */
-    function checkGroups(hand) {
-        const idx = {}
-        for (const card of hand) {
-            if (!idx[card.value]) idx[card.value] = 1
-            else idx[card.value] += 1
-        }
-        for (const key in idx) {
-            if (idx[key] >= 3) return true
-        }
-        return false
-    }
+    const check = {
+        // Check if you can group 3 or more cards
+        groups: hand => {
+            const idx = {}
+            for (const card of hand) {
+                if (!idx[card.value]) idx[card.value] = 1
+                else idx[card.value] += 1
+            }
+            for (const key in idx) {
+                if (idx[key] >= 3) return true
+            }
+            return false
+        },
+        // Check if you can create a staircase
+        staircase: hand => {
+            const numbers = [6, 7, 8, 9, 10, 11, 12]
+            let correct = true
 
-    /**
-     * Check if you had the right numbers to create a staircase
-     * @param hand Player or CPU hand
-     * @returns true if you can create a staircase
-     */
-    function checkStaircase(hand) {
-        const numbers = [6, 7, 8, 9, 10, 11, 12]
-        let correct = true
-
-        for (const num of numbers) {
-            if (!hand.find(x => x.value === num)) correct = false
-        }
-        return correct
+            for (const num of numbers) {
+                if (!hand.find(x => x.value === num)) correct = false
+            }
+            return correct
+        },
     }
 
     return {
         game: readonly(game),
         setup,
         start,
-        checkGroups,
-        checkStaircase,
+        check,
         getCards: () => {
             for (let i = 0; i < 3; i++) {
                 player.hand.push(data.deck.shift())
             }
             sortHands()
+            game.value.data.playerTurn = false
+            game.value.data.playing = false
         },
     }
 }
