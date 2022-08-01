@@ -16,7 +16,7 @@
                 <List :deck="game.player.hand" :on-hand="true" />
                 <ActionPanel
                     :get-cards="getCards"
-                    :disable-all="!game.data.playing && game.data.playerTurn"
+                    :disable-all="!game.data.playing"
                     :disable-getcards="!game.data.playerTurn"
                     :disable-groups="!check.groups(game.player.hand)"
                     :disable-stairs="!check.staircase(game.player.hand)"
@@ -26,7 +26,13 @@
             <div class="bg-zinc-800 p-4 flex flex-col justify-between">
                 <h2>CPU</h2>
                 <List :deck="game.cpu.hand" :on-hand="true" />
-                <ActionPanel :disable-all="true" />
+                <ActionPanel
+                    :get-cards="getCards"
+                    :disable-all="!game.data.playing"
+                    :disable-getcards="game.data.playerTurn"
+                    :disable-groups="!check.groups(game.cpu.hand)"
+                    :disable-stairs="!check.staircase(game.cpu.hand)"
+                />
             </div>
         </section>
     </div>

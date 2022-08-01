@@ -49,7 +49,6 @@ export default () => {
         }
 
         data.deck = temp
-        data.playing = false
     }
 
     /**
@@ -121,7 +120,6 @@ export default () => {
             }
             sortHands()
             game.value.data.playerTurn = false
-            game.value.data.playing = false
         },
     }
 }
