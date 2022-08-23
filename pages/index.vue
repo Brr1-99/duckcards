@@ -52,10 +52,10 @@ export default {
                     link: '/parade',
                 },
                 {
-                    name: 'Portal',
-                    description: 'Navigate through a maze of rooms to find the exit.',
-                    image: '/images/dark.jpg',
-                    link: '/portal',
+                    name: 'Tic Tac Toe',
+                    description: 'The classic, but this time a version with Matrioshkas!',
+                    image: '/images/tictactoe.jpg',
+                    link: '/tictactoe',
                 },
                 {
                     name: 'Portal',
