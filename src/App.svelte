@@ -6,17 +6,17 @@
     import './styles/main.css'
 </script>
 
-<div class="h-screen bg-zinc-900 text-white">
+<div class="lg:h-screen bg-zinc-900 text-white">
     <header class="bg-zinc-800">
         <Header />
     </header>
     
-    <main class="mt-10">
+    <main class="mt-10 px-2">
         <Router />
     </main>
     
     
-    <div class="bg-zinc-800 absolute bottom-0 left-0 right-0 text-center">
+    <div class="bg-zinc-800 lg:absolute bottom-0 left-0 right-0 text-center">
         <Footer />
     </div>
 </div>

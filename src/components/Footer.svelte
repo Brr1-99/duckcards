@@ -3,11 +3,11 @@
 </script>
 
 <footer>
-    <div class="container m-auto flex justify-around items-center">
+    <div class="container m-auto flex flex-col md:flex-row justify-around items-center">
         <a href="/">
             <section class="flex flex-col hover:text-yellow-300">
                 <span class="text-xl">다 위 치</span>
-                <span>DuckCards © {date}</span>
+                <span>DuckGames © {date}</span>
             </section>
         </a>
 
@@ -18,11 +18,5 @@
                 alt="Coffee"
             />
         </a>
-
-        <div class="text-2xl hover:text-yellow-300">
-            <a title="See project" href="https://github.com/dawichi/duckcards" target="_blank" rel="noreferrer">
-                <i class="bi bi-github" />
-            </a>
-        </div>
     </div>
 </footer>

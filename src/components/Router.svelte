@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { Game } from 'src/interfaces/Game.dto'
     import BgImage from './BgImage.svelte'
-import Box from './Box.svelte'
+    import Box from './Box.svelte'
     import Btn from './Btn.svelte'
 
     const games: Game[] = [
@@ -33,24 +33,22 @@ import Box from './Box.svelte'
 </script>
 
 <div class="flex flex-col items-center justify-center">
-    <h2 class="text-4xl p-4">Welcome to DuckCards</h2>
+    <h2 class="text-4xl p-4">Welcome to DuckGames</h2>
     <br/>
 
     <Box title='Games available 🦆'>
-        <ul class="container grid grid-cols-4 gap-4 p-4">
+        <ul class="container grid lg:grid-cols-4 gap-4 p-4">
             {#each games as game}
-                <li class="bg-zinc-800 border-2 p-4 cursor-pointer hover:bg-yellow-300 hover:text-black">
-                    <a href={game.link}>
-                        <section class="grid grid-cols-2 gap-4">
-                            <div class="h-full">
-                                <BgImage image={game.image} />
-                            </div>
-                            <header>
-                                <h2 class="text-3xl mb-4">{game.name}</h2>
-                                <p>{game.description}</p>
-                                <Btn color="sfdfs">Start</Btn>
-                            </header>
-                        </section>
+                <li class="bg-zinc-800 border-2 p-4 cursor-pointer hover:bg-yellow-300 hover:text-black transition-transform hover:-rotate-3">
+                    <a href={game.link} class="grid grid-cols-2 gap-4">
+                        <div class="h-full">
+                            <BgImage image={game.image} />
+                        </div>
+                        <header>
+                            <h2 class="text-3xl mb-4">{game.name}</h2>
+                            <p>{game.description}</p>
+                            <Btn color="sfdfs">Start</Btn>
+                        </header>
                     </a>
                 </li>
             {/each}

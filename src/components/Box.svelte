@@ -11,7 +11,7 @@
     export let title: string
 </script>
 
-<div class="border border-2 p-4 relative">
+<div class="border border-2 p-4 relative rounded">
     <p class="absolute top-[-20px] left-5 bg-zinc-900 px-2 text-2xl">{title}</p>
     <div>
         <slot/>

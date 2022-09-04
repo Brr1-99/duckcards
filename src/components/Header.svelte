@@ -8,8 +8,8 @@
         <h1 class="text-xl ml-5">Svelte App</h1>
     </div>
 
-    <div class="mr-5 hover:text-indigo-400 text-3xl">
-        <a title="See project" href="https://github.com/dawichi" target="_blank" rel="noreferrer">
+    <div class="text-2xl hover:text-yellow-300">
+        <a title="See project" href="https://github.com/dawichi/duckgames" target="_blank" rel="noreferrer">
             <i class="bi bi-github" />
         </a>
     </div>
